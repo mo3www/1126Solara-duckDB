@@ -1,15 +1,16 @@
-FROM python:3.11-slim
-
- WORKDIR /app
+FROM quay.io/jupyter/base-notebook:latest
 
 COPY requirements.txt .
+RUN pip install -r requirements.txt
 
- RUN apt-get update && apt-get install -y \
- build-essential \
- libgdal-dev \
- && rm -rf /var/lib/apt/lists/*
- RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir ./pages
+COPY /pages ./pages
 
- COPY ..
+WORKDIR /home/jovyan
+USER jovyan
 
- CMD ["solara", "run", "app.py", "--host", "0.0.0.0", "--port", "7860"]
+EXPOSE 7860
+
+HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health
+
+ENTRYPOINT ["solara", "run", "./pages", "--host=0.0.0.0", "--port=7860"]
