@@ -40,7 +40,7 @@ print(gdf.head())
 print(f"\nGeoDataFrame 的 CRS: {gdf.crs}")
 print("\n")
 
-# 這裡抱錯，說是版本不支援圖層設定
+# 這裡報錯，說是版本不支援圖層設定
 m = leafmap.Map(style="dark-matter")
 m.add_basemap("Esri.WorldImagery")
 m.add_data(
