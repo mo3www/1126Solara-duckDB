@@ -2,3 +2,12 @@ duckdb
 leafmap 
 pandas
 mapclassify
+pandas
+plotly
+geopandas
+ipyleaflet
+maplibre
+rasterio
+rioxarray
+solara
+widgetsnbextension
